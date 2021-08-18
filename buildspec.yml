@@ -1,20 +1,24 @@
 version: 0.2
 
 phases:
+  pre_build:
+    commands:
+      - echo Logging in to Amazon ECR...
+      - aws --version
+      - $(aws ecr get-login --region $AWS_DEFAULT_REGION --no-include-email)
+      - IMAGE_NAME="demo"
+      - REPOSITORY_URI=014125565833.dkr.ecr.eu-central-1.amazonaws.com/demo 
   build:
     commands:
-      - echo "Building the Docker image..."
-#      - make build
-      - docker build -t public.ecr.aws/q2m2k6m3/demo:latest -f ./Dockerfile .
-#      - docker tag public.ecr.aws/q2m2k6m3/demo:latest
-      - echo "Build completed"
+      - echo Build started on `date`
+      - echo Building the Docker image...
+      - echo Image_tag $IMAGE_TAG
+      - docker build -t $REPOSITORY_URI:latest .
+      - docker tag $REPOSITORY_URI:latest $REPOSITORY_URI
   post_build:
     commands:
-      - echo "Pushing the Docker image..."
-      - docker push public.ecr.aws/q2m2k6m3/demo:latest
-
-#phases:
-#  build:
-#    commands:
-#      - echo "Build image"
-#      - make build
+      - echo Build completed on `date`
+      - echo Pushing the Docker images...
+      - docker push $REPOSITORY_URI:$IMAGE_TAG
+      - echo Writing image definitions file...
+     

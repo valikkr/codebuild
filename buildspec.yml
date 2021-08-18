@@ -13,7 +13,7 @@ phases:
       - echo Build started on `date`
       - echo Building the Docker image...
       - echo Image_tag $IMAGE_TAG
-      - docker build -t $REPOSITORY_URI:latest .
+      - docker build -t 014125565833.dkr.ecr.eu-central-1.amazonaws.com/$REPOSITORY_URI:latest
    #   - docker tag $REPOSITORY_URI:latest 
   post_build:
     commands:

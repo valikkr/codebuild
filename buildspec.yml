@@ -3,4 +3,5 @@ version: 0.2
 phases:
   build:
     commands:
-      - ./run.sh
+      - echo "Build image"
+      - ocker build -t con .

@@ -6,7 +6,7 @@ phases:
       - echo "Building the Docker image..."
 #      - make build
       - docker build -t public.ecr.aws/q2m2k6m3/demo:latest -f ./Dockerfile .
-      - docker tag public.ecr.aws/q2m2k6m3/demo:latest
+#      - docker tag public.ecr.aws/q2m2k6m3/demo:latest
       - echo "Build completed"
   post_build:
     commands:

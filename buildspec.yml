@@ -4,4 +4,4 @@ phases:
   build:
     commands:
       - echo "Build image"
-      - docker build -t con .
+      - make build

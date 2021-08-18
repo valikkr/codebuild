@@ -2,14 +2,14 @@ version: 0.2
 
   build:
     commands:
-      - echo Building the Docker image...
+      - echo "Building the Docker image...
       - make build
 #      - docker build -t public.ecr.aws/q2m2k6m3/demo:latest -f ./Dockerfile .
 #      - docker tag public.ecr.aws/q2m2k6m3/demo:latest
   post_build:
     commands:
-      - echo Build completed on `date`
-      - echo Pushing the Docker image...
+      - echo "Build completed"
+      - echo "Pushing the Docker image...
       - docker push public.ecr.aws/q2m2k6m3/demo:latest
 ...
 

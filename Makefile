@@ -8,6 +8,12 @@ build:
 	#	
 #	docker tag demo:latest public.ecr.aws/q2m2k6m3/demo:latest
 #	docker push public.ecr.aws/q2m2k6m3/demo:latest
+# Docker publish
+# Docker release - build, tag and push the container
+release: build publish ## Make a release by building and publishing the `{version}` ans `latest` tagged containers to ECR
+
+
+publish: repo-login publish-latest publish-version ## publish the `{version}` ans `latest` tagged containers to ECR
 
 publish-latest: 
 	tag-latest ## Publish the `latest` taged container to ECR

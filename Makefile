@@ -1,6 +1,5 @@
 REPO_NAME = public.ecr.aws/q2m2k6m3/demo
 
-.PHONY: help
 build:
 #	$(MAKE) docker-login
 	docker build -t $(REPO_NAME) -f ./Dockerfile .

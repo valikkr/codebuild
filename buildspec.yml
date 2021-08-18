@@ -7,7 +7,7 @@ phases:
       - aws --version
       - $(aws ecr get-login --region $AWS_DEFAULT_REGION --no-include-email)
       - IMAGE_NAME="demo"
-      - REPOSITORY_URI=014125565833.dkr.ecr.eu-central-1.amazonaws.com/demo 
+      - REPOSITORY_URI=014125565833.dkr.ecr.eu-central-1.amazonaws.com/public.ecr.aws/q2m2k6m3/demo
   build:
     commands:
       - echo Build started on `date`

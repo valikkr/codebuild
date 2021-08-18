@@ -13,7 +13,7 @@ phases:
       - echo Build started on `date`
       - echo Building the Docker image...
       - echo Image_tag 
-      - docker build -t public.ecr.aws/q2m2k6m3/demo:latest
+      - docker build -t public.ecr.aws/q2m2k6m3/demo:latest .
       - docker tag public.ecr.aws/q2m2k6m3/demo:latest 014125565833.dkr.ecr.eu-central-1.amazonaws.com/public.ecr.aws/q2m2k6m3/demo:latest 
   post_build:
     commands:

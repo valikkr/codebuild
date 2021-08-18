@@ -4,4 +4,4 @@ phases:
   build:
     commands:
       - echo "Build image"
-      - ocker build -t con .
+      - docker build -t con .

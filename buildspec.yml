@@ -14,7 +14,7 @@ phases:
     - $(aws ecr get-login --no-include-email --region eu-central-1)
     - COMMIT_HASH=$(echo $CODEBUILD_RESOLVED_SOURCE_VERSION | cut -c 1-7)
     - IMAGE_TAG=${COMMIT_HASH:=latest}
-    - REPOSITORY_URI=public.ecr.aws/q2m2k6m3/demo #014125565833.dkr.ecr.eu-central-1.amazonaws.com/demo
+    - REPOSITORY_URI=014125565833.dkr.ecr.eu-central-1.amazonaws.com/demo #public.ecr.aws/q2m2k6m3/demo #
     
   build: 
     commands: 

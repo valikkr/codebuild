@@ -10,14 +10,15 @@ phases:
     commands: 
     - echo Logging in to Amazon ECR.... 
     - aws --version
+    # install terraform
+    - curl -sSL "https://releases.hashicorp.com/terraform/${TERRAFORM_VERSION}/terraform_${TERRAFORM_VERSION}_linux_amd64.zip" -o terraform.zip
+    - unzip terraform.zip -d /usr/local/bin && chmod +x /usr/local/bin/terraform
     # update the following line with your own region
     - $(aws ecr get-login --no-include-email --region eu-central-1)
     - COMMIT_HASH=$(echo $CODEBUILD_RESOLVED_SOURCE_VERSION | cut -c 1-7)
     - IMAGE_TAG=${COMMIT_HASH:=latest}
     - REPOSITORY_URI=014125565833.dkr.ecr.eu-central-1.amazonaws.com/demo
-    # install terraform
-    - curl -sSL "https://releases.hashicorp.com/terraform/${TERRAFORM_VERSION}/terraform_${TERRAFORM_VERSION}_linux_amd64.zip" -o terraform.zip
-    - unzip terraform.zip -d /usr/local/bin && chmod +x /usr/local/bin/terraform    
+   
   build: 
     commands: 
     - echo Build started on `date` 

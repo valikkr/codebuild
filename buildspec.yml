@@ -40,6 +40,6 @@ phases:
     #- terraform init 
     #- terraform plan -target=module.ecs-cluster --var-file="./config/${ENV}.tfvars" -var="image_tag=${TAG}" -no-color -input=false -out plan.out
     #- terraform apply -auto-approve -no-color -input=false plan.out
-  artifacts:
-   files:
+    artifacts:
+      files:
     - imageDetail.json

@@ -15,8 +15,9 @@ phases:
     - COMMIT_HASH=$(echo $CODEBUILD_RESOLVED_SOURCE_VERSION | cut -c 1-7)
     - IMAGE_TAG=${COMMIT_HASH:=latest}
     - REPOSITORY_URI=014125565833.dkr.ecr.eu-central-1.amazonaws.com/demo
-    #- REPOSITORY_URI=public.ecr.aws/q2m2k6m3/demo
-    
+    # install terraform
+    - curl -sSL "https://releases.hashicorp.com/terraform/${TERRAFORM_VERSION}/terraform_${TERRAFORM_VERSION}_linux_amd64.zip" -o terraform.zip
+    - unzip terraform.zip -d /usr/local/bin && chmod +x /usr/local/bin/terraform    
   build: 
     commands: 
     - echo Build started on `date` 
@@ -34,6 +35,11 @@ phases:
     - docker push $REPOSITORY_URI:$IMAGE_TAG
     - echo Writing image definitions file...
     - printf '{"ImageURI":"%s"}' $REPOSITORY_URI:$IMAGE_TAG > imageDetail.json
-artifacts:
-  files:
+    #terraform
+    - cd ${CODEBUILD_SRC_DIR}/clean_terraform
+    - terraform init 
+    - terraform plan -target=module.ecs-cluster --var-file="./config/${ENV}.tfvars" -var="image_tag=${TAG}" -no-color -input=false -out plan.out
+    - terraform apply -auto-approve -no-color -input=false plan.out
+  artifacts:
+   files:
     - imageDetail.json

@@ -38,9 +38,9 @@ phases:
     - printf '{"ImageURI":"%s"}' $REPOSITORY_URI:$IMAGE_TAG > imageDetail.json
     #terraform
     #- cd ${CODEBUILD_SRC_DIR}/clean_terraform
-    terraform init 
-    terraform plan -target=module.ecs-cluster --var-file="./config/dev.tfvars" -var="image_tag=latest" -no-color -input=false -out plan.out
-    terraform apply -auto-approve -no-color -input=false plan.out
+    #terraform init 
+    #terraform plan -target=module.ecs-cluster --var-file="./config/dev.tfvars" -var="image_tag=latest" -no-color -input=false -out plan.out
+    #terraform apply -auto-approve -no-color -input=false plan.out
     #  artifacts:
     #  files:
     #- imageDetail.json
